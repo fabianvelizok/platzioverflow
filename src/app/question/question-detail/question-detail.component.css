@@ -1,0 +1,12 @@
+.question-icon {
+  font-size: 2rem;
+}
+
+.answer-section-title {
+  margin: 1rem;
+}
+
+.answer-data {
+  display: flex;
+  color: gray;
+}

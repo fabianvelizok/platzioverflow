@@ -3,8 +3,13 @@
     <div mat-card-avatar>
       <i [ngClass]="question.icon"></i>
     </div>
-    <mat-card-title>{{question.title}}</mat-card-title>
-    <mat-card-subtitle>{{question.createdAt | date}}</mat-card-subtitle>
+    <mat-card-title>
+      <span class="mat-title">{{question.title}}</span>
+    </mat-card-title>
+    <mat-card-subtitle>
+      <span>fabianvelizok - </span>
+      <span>{{question.createdAt | amTimeAgo}}</span>
+    </mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
@@ -13,3 +18,22 @@
     </p>
   </mat-card-content>
 </mat-card>
+
+<div class="answers">
+  <h3 class="answer-section-title mat-title">Answers</h3>
+  <mat-list class="answer">
+    <mat-list-item>
+      <mat-icon mat-list-icon>question_answer</mat-icon>
+      <h4 mat-line>Answer 1</h4>
+      <div mat-line class="no-ellipsis">
+        <p>
+          Answer description.
+          <strong>
+            <span>fabianvelizok - </span>
+            <span>{{question.createdAt | amTimeAgo}}</span>
+          </strong>
+        </p>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -3,8 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-// Material modules
-import { MaterialModules } from './material.modules';
+// Libs
+import { MaterialModules } from './material.modules'; // Material modules
+import { MomentModule } from 'angular2-moment';
 
 // Components
 import { AppComponent } from './app.component';
@@ -14,12 +15,13 @@ import { QuestionDetailComponent } from './question/question-detail/question-det
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionDetailComponent
+    QuestionDetailComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MaterialModules
+    MaterialModules,
+    MomentModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

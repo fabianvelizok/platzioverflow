@@ -13,3 +13,12 @@ body {
 * {
   box-sizing: border-box;
 }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.no-ellipsis {
+  white-space: normal !important;
+  text-overflow: initial !important;
+}
