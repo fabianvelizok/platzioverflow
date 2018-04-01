@@ -1,0 +1,15 @@
+<mat-card>
+  <mat-card-header>
+    <div mat-card-avatar>
+      <i [ngClass]="question.icon"></i>
+    </div>
+    <mat-card-title>{{question.title}}</mat-card-title>
+    <mat-card-subtitle>{{question.createdAt | date}}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p>
+        {{question.description}}
+    </p>
+  </mat-card-content>
+</mat-card>
