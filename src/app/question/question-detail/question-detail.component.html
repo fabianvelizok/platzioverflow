@@ -29,7 +29,7 @@
         <p>
            {{answer.description}}.
           <strong>
-            <span>{{answer.user.firstName}} {{answer.user.lastName}} - </span>
+            <span>{{answer.user.fullName()}} - </span>
             <span>{{answer.createdAt | amTimeAgo}}</span>
           </strong>
         </p>

@@ -11,6 +11,8 @@ import { MomentModule } from 'angular2-moment';
 import { AppComponent } from './app.component';
 import { QuestionDetailComponent } from './question/question-detail/question-detail.component';
 import { AnswerFormComponent } from './answer/answer-form/answer-form.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignoutComponent } from './auth/signout/signout.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { AnswerFormComponent } from './answer/answer-form/answer-form.component'
     AppComponent,
     QuestionDetailComponent,
     AnswerFormComponent,
+    SigninComponent,
+    SignoutComponent,
   ],
   imports: [
     BrowserModule,
