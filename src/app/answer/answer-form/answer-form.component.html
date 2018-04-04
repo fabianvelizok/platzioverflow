@@ -1,0 +1,7 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="description"
+               name="description" ngModel #description="ngModel"></textarea>
+  </mat-form-field>
+  <button mat-button>Answer</button>
+</form>

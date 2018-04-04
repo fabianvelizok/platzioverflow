@@ -19,21 +19,26 @@
   </mat-card-content>
 </mat-card>
 
-<div class="answers">
+<div class="answers" *ngIf="question.answers.length > 0">
   <h3 class="answer-section-title mat-title">Answers</h3>
   <mat-list class="answer">
-    <mat-list-item>
+    <mat-list-item *ngFor="let answer of question.answers">
       <mat-icon mat-list-icon>question_answer</mat-icon>
-      <h4 mat-line>Answer 1</h4>
+      <!-- <h4 mat-line>{{answer.description}}</h4> -->
       <div mat-line class="no-ellipsis">
         <p>
-          Answer description.
+           {{answer.description}}.
           <strong>
-            <span>fabianvelizok - </span>
-            <span>{{question.createdAt | amTimeAgo}}</span>
+            <span>{{answer.user.firstName}} {{answer.user.lastName}} - </span>
+            <span>{{answer.createdAt | amTimeAgo}}</span>
           </strong>
         </p>
       </div>
     </mat-list-item>
   </mat-list>
 </div>
+<div *ngIf="question.answers.length === 0">
+  Sé el primero en responder :D
+</div>
+<hr>
+<app-answer-form [question]="question"></app-answer-form>

@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FormsModule } from '@angular/forms';
 // Libs
 import { MaterialModules } from './material.modules'; // Material modules
 import { MomentModule } from 'angular2-moment';
@@ -10,18 +10,21 @@ import { MomentModule } from 'angular2-moment';
 // Components
 import { AppComponent } from './app.component';
 import { QuestionDetailComponent } from './question/question-detail/question-detail.component';
+import { AnswerFormComponent } from './answer/answer-form/answer-form.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionDetailComponent,
+    AnswerFormComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModules,
     MomentModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
