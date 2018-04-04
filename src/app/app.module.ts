@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Libs
 import { MaterialModules } from './material.modules'; // Material modules
 import { MomentModule } from 'angular2-moment';
@@ -29,6 +29,7 @@ import { SignoutComponent } from './auth/signout/signout.component';
     MaterialModules,
     MomentModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

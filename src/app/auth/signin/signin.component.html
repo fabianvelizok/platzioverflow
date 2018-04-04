@@ -1,3 +1,13 @@
-<p>
-  signin works!
-</p>
+<form class="signin-form" [formGroup]="signinForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="full-width">
+    <input matInput type="email" id="email" placeholder="Enter email"
+           formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput type="password" id="password" placeholder="Enter password"
+           formControlName="password">
+  </mat-form-field>
+
+  <button mat-button>Sign In</button>
+</form>
