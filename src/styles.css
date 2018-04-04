@@ -22,3 +22,22 @@ body {
   white-space: normal !important;
   text-overflow: initial !important;
 }
+
+
+.signin-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.full-width {
+  width: 100%;
+}
+
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 40px auto;
+}

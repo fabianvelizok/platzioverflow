@@ -12,7 +12,7 @@ import { AppComponent } from './app.component';
 import { QuestionDetailComponent } from './question/question-detail/question-detail.component';
 import { AnswerFormComponent } from './answer/answer-form/answer-form.component';
 import { SigninComponent } from './auth/signin/signin.component';
-import { SignoutComponent } from './auth/signout/signout.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import { SignoutComponent } from './auth/signout/signout.component';
     QuestionDetailComponent,
     AnswerFormComponent,
     SigninComponent,
-    SignoutComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
