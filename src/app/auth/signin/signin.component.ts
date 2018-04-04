@@ -28,5 +28,4 @@ export class SigninComponent implements OnInit {
     const newUser = new User(email, password);
     console.log(newUser);
   }
-
 }

@@ -1,3 +1,21 @@
-<p>
-  Sign up, not sign out!
-</p>
+<form class="signup-form" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="full-width">
+    <input matInput type="text" id="firstName" placeholder="Enter first name"
+    formControlName="firstName">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput type="text" id="lastName" placeholder="Enter last name"
+           formControlName="lastName">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput type="email" id="email" placeholder="Enter email" formControlName="email">
+  </mat-form-field>
+
+  <mat-form-field class="full-width">
+    <input matInput type="password" id="password" placeholder="Enter password" formControlName="password">
+  </mat-form-field>
+
+  <button mat-button>Sign Up</button>
+</form>
