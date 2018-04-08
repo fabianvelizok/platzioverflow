@@ -13,6 +13,7 @@ import { QuestionDetailComponent } from './question/question-detail/question-det
 import { AnswerFormComponent } from './answer/answer-form/answer-form.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { QuestionListComponent } from './question/question-list/question-list.component';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { SignupComponent } from './auth/signup/signup.component';
     AnswerFormComponent,
     SigninComponent,
     SignupComponent,
+    QuestionListComponent,
   ],
   imports: [
     BrowserModule,

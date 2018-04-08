@@ -1,0 +1,8 @@
+<mat-list>
+  <mat-list-item *ngFor="let question of questions">
+    <i *ngIf="question.icon" [ngClass]="question.icon"></i>
+    <i *ngIf="!question.icon" class="material-icons">help_outline</i>
+    <h4 mat-line>{{question.title}}</h4>
+    <p mat-line> {{question.answers.length}} answers -  {{question.createdAt | amTimeAgo}}</p>
+  </mat-list-item>
+</mat-list>
