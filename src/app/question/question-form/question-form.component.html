@@ -1,0 +1,28 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Enter title" name="title" ngModel #title="ngModel"></textarea>
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+    <textarea matInput placeholder="Enter description" name="description" ngModel #description="ngModel"></textarea>
+  </mat-form-field>
+
+  <div class="question-grid">
+    <mat-radio-group name="icon" ngModel #icon="ngModel">
+      <mat-grid-list cols="3" rowHeight="3:2">
+        <mat-grid-tile>
+          <mat-radio-button></mat-radio-button>
+          <i class="question-icon material-icons">help_outline</i>
+        </mat-grid-tile>
+
+        <mat-grid-tile *ngFor="let icon of icons">
+          <mat-radio-button [value]="getIconClass(icon)"></mat-radio-button>
+          <i class="question-icon colored" [ngClass]="getIconClass(icon)"></i>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-radio-group>
+  </div>
+
+  <br>
+
+  <button mat-button>Create question</button>
+</form>

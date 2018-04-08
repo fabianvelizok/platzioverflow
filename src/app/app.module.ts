@@ -14,6 +14,7 @@ import { AnswerFormComponent } from './answer/answer-form/answer-form.component'
 import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { QuestionListComponent } from './question/question-list/question-list.component';
+import { QuestionFormComponent } from './question/question-form/question-form.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { QuestionListComponent } from './question/question-list/question-list.co
     SigninComponent,
     SignupComponent,
     QuestionListComponent,
+    QuestionFormComponent,
   ],
   imports: [
     BrowserModule,

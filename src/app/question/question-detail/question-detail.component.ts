@@ -12,7 +12,7 @@ export class QuestionDetailComponent {
     'New question about android',
     'Android.manifest',
     new Date,
-    'question-icon devicon-android-plain colored'
+    'devicon-android-plain colored'
   );
 
 }

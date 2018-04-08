@@ -1,0 +1,4 @@
+.question-grid {
+  max-height: 450px;
+  overflow: auto;
+}
