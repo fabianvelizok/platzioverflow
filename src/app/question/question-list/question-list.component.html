@@ -1,6 +1,6 @@
 <mat-list>
-  <mat-list-item *ngFor="let question of questions">
-
+  <mat-list-item *ngFor="let question of questions"
+                 [routerLink]="['questions', question._id]">
     <i *ngIf="!question.icon" class="question-icon material-icons">help_outline</i>
     <i *ngIf="question.icon" class="question-icon colored" [ngClass]="question.icon"[ngClass]="question.icon"></i>
 
