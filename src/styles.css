@@ -23,13 +23,6 @@ body {
   text-overflow: initial !important;
 }
 
-
-.signin-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
 .full-width {
   width: 100%;
 }
@@ -45,3 +38,6 @@ form {
   font-size: 2rem;
 }
 
+.logo, .user-icon {
+  color: #fff;
+}
