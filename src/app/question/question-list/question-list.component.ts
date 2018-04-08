@@ -13,6 +13,7 @@ const q = new Question(
   templateUrl: './question-list.component.html',
   styleUrls: ['./question-list.component.css']
 })
+
 export class QuestionListComponent {
-  questions: Question[] = new Array(10).fill(q);
+  questions: Question[] = new Array(20).fill(q);
 }
