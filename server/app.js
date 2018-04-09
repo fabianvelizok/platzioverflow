@@ -1,9 +1,10 @@
 import express from 'express';
 
+// Routes
+import { question } from './routes';
+
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Hello world');
-});
+app.use('/api/questions', question);
 
 export default app;
