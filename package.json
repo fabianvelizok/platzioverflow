@@ -10,7 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "start:client": "ng serve",
-    "start:server": "DEBUG=Platzioverflow* nodemon ./server/index.js --exec babel-node"
+    "start:server": "NODE_ENV=development DEBUG=Platzioverflow* nodemon ./server/index.js --exec babel-node"
   },
   "private": true,
   "dependencies": {

@@ -3,13 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { HttpModule } from '@angular/http';
 // Libs
 import { MaterialModules } from './material.modules'; // Material modules
 import { MomentModule } from 'angular2-moment';
 
 // Routes
 import Routes from './app.routes';
+
+// Services
+import { QuestionService } from './question/question.service';
 
 // Components
 import { AppComponent } from './app.component';
@@ -39,8 +42,11 @@ import { QuestionFormComponent } from './question/question-form/question-form.co
     FormsModule,
     ReactiveFormsModule,
     Routes,
+    HttpModule,
   ],
-  providers: [],
+  providers: [
+    QuestionService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
