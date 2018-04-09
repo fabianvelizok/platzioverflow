@@ -2,13 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Question } from '../question.model';
 import { QuestionService } from '../question.service';
 
-const q = new Question(
-  'New question about android',
-  'Android.manifest',
-  new Date,
-  'devicon-android-plain colored'
-);
-
 @Component({
   selector: 'app-question-list',
   templateUrl: './question-list.component.html',

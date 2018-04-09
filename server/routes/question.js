@@ -6,7 +6,7 @@ const app = express.Router();
 const question = {
   _id: 1,
   title: 'New question about android',
-  description: 'Android.manifest',
+  description: 'Some description about Android.manifest',
   createdAt: new Date(),
   icon: 'devicon-android-plain colored',
   answers: [],
