@@ -41,3 +41,12 @@ form {
 .logo, .user-icon {
   color: #fff;
 }
+
+.spinner-wrapper {
+  text-align: center;
+  margin: 20px;
+}
+
+.spinner {
+  display: inline-block !important;
+}

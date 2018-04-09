@@ -17,13 +17,17 @@ const q = new Question(
 
 export class QuestionListComponent implements OnInit {
   questions: Question[];
-  loading = true;
+  isLoading = true;
 
   constructor(private questionService: QuestionService) { }
 
   ngOnInit() {
     this.questionService
       .getQuestions()
-      .then((questions: Question[]) => this.questions = questions)
+      .then((questions: Question[]) => {
+        this.questions = questions;
+        this.isLoading = false;
+      })
+      .catch(() => this.isLoading = false)
   }
 }
