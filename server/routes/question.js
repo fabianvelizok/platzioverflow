@@ -22,17 +22,27 @@ const fakeQuestion = {
 
 const fakeQuestions = new Array(10).fill(fakeQuestion);
 
+// Middlewares
+
+function questionMiddleware(req, res, next) {
+  const id = parseInt(req.params.id, 10);
+  const currentQuestion = fakeQuestions
+    .find(fakeQuestion => fakeQuestion._id === id) || {};
+  req.question = currentQuestion;
+
+  next();
+}
+
+// Endpoints
+
 // GET /api/questions
 app.get('/', (req, res) => {
   res.status(200).json(fakeQuestions);
 });
 
 // GET /api/questions/:id
-app.get('/:id', (req, res) => {
-  const id = parseInt(req.params.id, 10);
-  const currentQuestion = fakeQuestions
-    .find(fakeQuestion => fakeQuestion._id === id) || {};
-  res.status(200).json(currentQuestion);
+app.get('/:id', questionMiddleware, (req, res) => {
+  res.status(200).json(req.question);
 });
 
 app.post('/', (req, res) => {
