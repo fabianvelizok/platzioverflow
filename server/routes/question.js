@@ -73,7 +73,7 @@ app.post('/', userMiddleware, (req, res) => {
 });
 
 // POST /api/questions/:id/answers
-app.post(':id/answers', questionMiddleware, userMiddleware, (req, res) => {
+app.post('/:id/answers', questionMiddleware, userMiddleware, (req, res) => {
   const question = req.question;
   const newAnswer = req.body;
 

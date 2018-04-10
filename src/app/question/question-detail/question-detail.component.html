@@ -37,9 +37,10 @@
             <mat-icon mat-list-icon>question_answer</mat-icon>
             <div mat-line class="no-ellipsis">
               <p>
-                {{answer.description}}.
+                {{answer.description}}
                 <strong>
-                  <span>{{answer.user.fullName()}} - </span>
+                  <!-- <span>{{answer.user.fullName()}} - </span> -->
+                  <span>{{answer.user.firstName}} {{answer.user.lastName}} - </span>
                   <span>{{answer.createdAt | amTimeAgo}}</span>
                 </strong>
               </p>
