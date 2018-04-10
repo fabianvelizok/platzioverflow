@@ -57,18 +57,32 @@ app.get('/:id', questionMiddleware, (req, res) => {
   res.status(200).json(req.question);
 });
 
+// POST /api/questions
 app.post('/', userMiddleware, (req, res) => {
   const date = new Date();
-  const currentQuestion = req.body;
+  const newQuestion = req.body;
 
-  currentQuestion._id = date.getTime();
-  currentQuestion.createdAt = date;
-  currentQuestion.answers = [];
-  currentQuestion.user = req.user;
+  newQuestion._id = date.getTime();
+  newQuestion.createdAt = date;
+  newQuestion.answers = [];
+  newQuestion.user = req.user;
 
-  fakeQuestions.unshift(currentQuestion);
+  fakeQuestions.unshift(newQuestion);
 
-  res.status(201).json(currentQuestion);
-})
+  res.status(201).json(newQuestion);
+});
+
+// POST /api/questions/:id/answers
+app.post(':id/answers', questionMiddleware, userMiddleware, (req, res) => {
+  const question = req.question;
+  const newAnswer = req.body;
+
+  newAnswer.createdAt = new Date();
+  newAnswer.user = req.user;
+
+  question.answers.push(newAnswer);
+
+  res.status(201).json(newAnswer);
+});
 
 export default app;
