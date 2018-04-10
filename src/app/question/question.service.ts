@@ -46,7 +46,11 @@ export class QuestionService {
   }
 
   createAnswer(answer: Answer) {
-    const body = JSON.stringify(answer);
+    const lightAnswer = {
+      description: answer.description,
+      question: { _id: answer.question._id }
+    };
+    const body = JSON.stringify(lightAnswer);
     const headers = new Headers({ 'Content-Type': 'application/json'});
     const answerUrl = `${this.questionUrl}/${answer.question._id}/answers`;
 
