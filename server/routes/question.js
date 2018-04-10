@@ -4,11 +4,14 @@ const app = express.Router();
 
 // Fake data
 const fakeUser = {
+  _id: 1,
   firstName: 'Fabián',
   lastName: 'Veliz',
   email: 'velizfabianhoracio@gmail.com',
   password: '123123123'
 }
+
+const fakeUsers = new Array(10).fill(fakeUser);
 
 const fakeQuestion = {
   _id: 1,
@@ -33,6 +36,15 @@ function questionMiddleware(req, res, next) {
   next();
 }
 
+function userMiddleware(req, res, next) {
+  const id = parseInt(req.params.id, 10) || 1;
+  const currentUser = fakeUsers
+    .find(fakeUser => fakeUser._id === id) || {};
+  req.user = currentUser;
+
+  next();
+}
+
 // Endpoints
 
 // GET /api/questions
@@ -45,14 +57,14 @@ app.get('/:id', questionMiddleware, (req, res) => {
   res.status(200).json(req.question);
 });
 
-app.post('/', (req, res) => {
+app.post('/', userMiddleware, (req, res) => {
   const date = new Date();
   const currentQuestion = req.body;
 
   currentQuestion._id = date.getTime();
   currentQuestion.createdAt = date;
   currentQuestion.answers = [];
-  currentQuestion.user = fakeUser;
+  currentQuestion.user = req.user;
 
   fakeQuestions.unshift(currentQuestion);
 
