@@ -6,3 +6,7 @@
   display: flex;
   color: gray;
 }
+
+.no-answers {
+  padding: 8px 16px 0;
+}

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Question } from '../../question/question.model';
 import icons from '../icons';
+import { QuestionService } from '../question.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-question-form',
@@ -10,6 +12,11 @@ import icons from '../icons';
 })
 export class QuestionFormComponent {
   icons: Object[] = icons;
+
+  constructor(
+    private questionService: QuestionService,
+    private router: Router,
+  ) {}
 
   getIconClass(icon: any) {
     let iconClass: string = '';
@@ -29,6 +36,14 @@ export class QuestionFormComponent {
       new Date,
       form.value.icon
     );
-    form.reset();
+
+    this.questionService.createQuestion(question)
+      .subscribe(
+        ({ _id }) => {
+          this.router.navigate(['questions', _id]);
+          form.reset();
+        },
+        (error) => console.error(error)
+      );
   }
 }
