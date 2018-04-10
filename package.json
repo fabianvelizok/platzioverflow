@@ -43,6 +43,7 @@
     "@types/node": "~6.0.60",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "body-parser": "^1.18.2",
     "codelyzer": "^4.0.1",
     "debug": "^3.1.0",
     "jasmine-core": "~2.8.0",
