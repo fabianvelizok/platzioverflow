@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from './../user.model';
@@ -11,6 +12,8 @@ import { User } from './../user.model';
 export class SigninComponent implements OnInit {
   // Reactive forms
   signinForm: FormGroup;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit () {
     this.signinForm = new FormGroup({
@@ -26,6 +29,10 @@ export class SigninComponent implements OnInit {
     if (!this.signinForm.valid) { return; }
     const { email, password } = this.signinForm.value;
     const newUser = new User(email, password);
-    console.log(newUser);
+    this.authService.signin(newUser)
+      .subscribe(
+        this.authService.loginAndSaveUser,
+        (error) => console.error(error),
+      );
   }
 }

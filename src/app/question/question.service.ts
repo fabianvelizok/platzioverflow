@@ -3,14 +3,14 @@ import { Question } from './question.model';
 import { Answer } from '../answer/answer.model';
 import { Http, Headers, Response } from '@angular/http';
 import { environment } from '../../environments/environment';
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/Rx';
 
 @Injectable()
 
 export class QuestionService {
-  private questionUrl: string
+  private questionUrl: string;
 
   constructor(private http: Http) {
     this.questionUrl = `${environment.apiUrl}/questions`;
@@ -26,14 +26,14 @@ export class QuestionService {
     return this.http.get(`${this.questionUrl}/${id}`)
       .toPromise()
       .then(response => response.json() as Question)
-      .catch(this.handleError)
+      .catch(this.handleError);
   }
 
   getQuestions(): Promise<void | Question[]> {
     return this.http.get(this.questionUrl)
       .toPromise()
       .then(response => response.json() as Question[])
-      .catch(this.handleError)
+      .catch(this.handleError);
   }
 
   createQuestion(question: Question) {
