@@ -55,10 +55,10 @@ app.post('/signin', (req, res) => {
     message: 'Login succeded',
     token,
     user: {
-      _id,
-      firstName,
-      lastName,
-      email,
+      _id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
     }
   });
 });
