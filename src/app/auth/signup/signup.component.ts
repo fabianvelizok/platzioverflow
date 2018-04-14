@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { User } from './../user.model';
@@ -10,6 +11,8 @@ import { User } from './../user.model';
 export class SignupComponent implements OnInit {
   // Reactive forms
   signupForm: FormGroup;
+
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.signupForm = new FormGroup({
@@ -25,9 +28,12 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     if (!this.signupForm.valid) { return; }
-    const { email, password, firstName, lastName } = this.signupForm.value;
-    const newUser = new User(email, password, firstName, lastName);
-    console.log(newUser);
+    const { email, password } = this.signupForm.value;
+    const newUser = new User(email, password);
+    this.authService.signup(newUser)
+      .subscribe(
+        this.authService.loginAndSaveUser,
+        (error) => console.error(error),
+    );
   }
-
 }

@@ -16,7 +16,7 @@ export class AuthService {
     private http: Http,
     private router: Router
   ) {
-    this.userUrl = `${environment.apiUrl}/auth/signin`;
+    this.userUrl = `${environment.apiUrl}/auth`;
     if (this.isLoggedIn()) {
       const user = JSON.parse(localStorage.getItem('user'));
       this.currentUser = this.createUserInstance(user);
@@ -43,7 +43,22 @@ export class AuthService {
   signin(user: User) {
     const body = JSON.stringify(user);
     const headers = new Headers({ 'Content-Type' : 'application/json' });
-    return this.http.post(this.userUrl, body, { headers })
+    return this.http.post(`${this.userUrl}/signin`, body, { headers })
+      .map((response: Response) => {
+        const authJson = response.json();
+        this.loginAndSaveUser(authJson);
+        return authJson;
+      })
+      .catch((error: Response) => {
+        console.error(error);
+        return Observable.throw(error.json());
+      });
+  }
+
+  signup(user: User) {
+    const body = JSON.stringify(user);
+    const headers = new Headers({ 'Content-Type' : 'application/json' });
+    return this.http.post(`${this.userUrl}/signup`, body, { headers })
       .map((response: Response) => {
         const authJson = response.json();
         this.loginAndSaveUser(authJson);
