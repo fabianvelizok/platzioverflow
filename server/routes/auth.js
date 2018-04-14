@@ -1,25 +1,15 @@
 import express from 'express';
 import Debug from 'debug';
 import jwt from 'jsonwebtoken';
+import { secret } from '../config';
+
+import {
+  findUserByEmail,
+  fakeUsers,
+} from '../middlewares';
 
 const debug = new Debug('Platzioverflow:auth');
 const app = express();
-
-// Fake data
-const fakeUser = {
-  _id: 1,
-  firstName: 'Fabián',
-  lastName: 'Veliz',
-  email: 'velizfabianhoracio@gmail.com',
-  password: '123123123'
-}
-
-const fakeUsers = new Array(10).fill(fakeUser);
-
-const findUserByEmail = (email) => {
-  const currentUser = fakeUsers.find(user => user.email === email);
-  return currentUser;
-};
 
 const comparePasswords = (enteredPassword, userPassword) => {
   return enteredPassword === userPassword;
@@ -33,7 +23,6 @@ const handleLoginError = (res) => {
 };
 
 const generateToken = (user) => {
-  const secret = 'secret'; // I'll move this soon.
   const token = jwt.sign({ user }, secret, { expiresIn: 86400 });
   return token;
 };
