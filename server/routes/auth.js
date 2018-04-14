@@ -75,7 +75,7 @@ app.post('/signup', (req, res) => {
   const { email, password, firstName, lastName } = req.body;
 
   const user = {
-    _id: new Date.getTime(),
+    _id: new Date().getTime(),
     email,
     password,
     firstName,
