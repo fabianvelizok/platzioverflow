@@ -46,7 +46,7 @@ export class AnswerFormComponent {
           this.smoothScroll.animateScroll(answerList);
           form.reset();
         },
-        (error) => console.error(error)
+        this.authService.handleError,
       );
   }
 

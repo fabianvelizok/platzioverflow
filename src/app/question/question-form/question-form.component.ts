@@ -51,7 +51,7 @@ export class QuestionFormComponent implements OnInit {
           this.router.navigate(['questions', _id]);
           form.reset();
         },
-        (error) => console.error(error)
+        this.authService.handleError,
       );
   }
 }

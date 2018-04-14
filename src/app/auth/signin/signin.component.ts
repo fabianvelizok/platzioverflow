@@ -32,7 +32,7 @@ export class SigninComponent implements OnInit {
     this.authService.signin(newUser)
       .subscribe(
         this.authService.loginAndSaveUser,
-        (error) => console.error(error),
+        this.authService.handleError,
       );
   }
 }

@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit {
     this.authService.signup(newUser)
       .subscribe(
         this.authService.loginAndSaveUser,
-        (error) => console.error(error),
+        this.authService.handleError,
     );
   }
 }
