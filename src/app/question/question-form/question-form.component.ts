@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { AuthService } from './../../auth/auth.service';
+import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Question } from '../../question/question.model';
 import icons from '../icons';
@@ -10,16 +11,17 @@ import { Router } from '@angular/router';
   templateUrl: './question-form.component.html',
   styleUrls: ['./question-form.component.css']
 })
-export class QuestionFormComponent {
+export class QuestionFormComponent implements OnInit {
   icons: Object[] = icons;
 
   constructor(
     private questionService: QuestionService,
     private router: Router,
+    private authService: AuthService,
   ) {}
 
   getIconClass(icon: any) {
-    let iconClass: string = '';
+    let iconClass = '';
 
     const iconVersion = icon.versions.font.includes('plain-wordmark')
       ? 'plain-wordmark'
@@ -27,6 +29,12 @@ export class QuestionFormComponent {
 
     iconClass = `devicon-${icon.name}-${iconVersion}`;
     return iconClass;
+  }
+
+  ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      return this.router.navigateByUrl('/signin');
+    }
   }
 
   onSubmit(form: NgForm) {

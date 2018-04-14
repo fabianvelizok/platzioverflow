@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/auth.service';
 import { Component, Input } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Answer } from '../answer.model';
@@ -19,12 +20,17 @@ export class AnswerFormComponent {
 
   constructor(
     private questionService: QuestionService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.smoothScroll = new SmoothScroll();
   }
 
   onSubmit(form: NgForm) {
+    if (!this.authService.isLoggedIn()) {
+      return this.router.navigateByUrl('/signin');
+    }
+
     const answer = new Answer(
       form.value.description,
       this.question,
