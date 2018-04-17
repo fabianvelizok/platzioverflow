@@ -27,19 +27,22 @@ app.get('/:id', async (req, res) => {
 });
 
 // POST /api/questions
-app.post('/', requireMiddleware, (req, res) => {
-  const date = new Date();
-  const questions = req.questions;
-  const newQuestion = req.body;
+app.post('/', requireMiddleware, async (req, res) => {
+  const { title, description, icon } = req.body;
 
-  newQuestion._id = date.getTime();
-  newQuestion.createdAt = date;
-  newQuestion.answers = [];
-  newQuestion.user = req.user;
+  const questionObject = {
+    title,
+    description,
+    icon,
+    user: req.user._id
+  };
 
-  questions.unshift(newQuestion);
-
-  res.status(201).json(newQuestion);
+  try {
+    const newQuestion = await question.create(questionObject);
+    res.status(201).json(newQuestion);
+  } catch (error) {
+    handleError(error, res);
+  }
 });
 
 // POST /api/questions/:id/answers

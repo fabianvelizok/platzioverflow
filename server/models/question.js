@@ -28,7 +28,8 @@ const QuestionSchema = new Schema({
   answers: [
     {
       type: ObjectId,
-      ref: 'Answer'
+      ref: 'Answer',
+      default: []
     }
   ]
 });

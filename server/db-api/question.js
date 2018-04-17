@@ -5,14 +5,14 @@ const debug = new Debug('Platzioverflow:db-api:question');
 
 export default {
 
-  findAll: async () => {
+  findAll: () => {
     debug('Finding all questions.');
-    return await Question.find().populate('answers');
+    return Question.find().populate('answers');
   },
 
-  findById: async (_id) => {
+  findById: (_id) => {
     debug(`Finding question with _id: ${_id}`);
-    return await Question
+    return Question
       .findOne({ _id })
       .populate('user') // Add user model
       .populate({
@@ -23,6 +23,11 @@ export default {
           model: 'User'
         }
       });
+  },
 
+  create: (q) => {
+    debug('Creating a new question.');
+    const question = new Question(q);
+    return question.save(question);
   }
 }
