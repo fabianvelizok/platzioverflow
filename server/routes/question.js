@@ -2,9 +2,7 @@ import express from 'express';
 
 import { requireMiddleware } from '../middlewares';
 import { question } from '../db-api';
-import Debug from 'debug';
-
-const debug = new Debug('Platzioverflow:routes');
+import { handleError } from '../utils';
 
 const app = express.Router();
 
@@ -14,18 +12,18 @@ app.get('/', async (req, res) => {
     const questions = await question.findAll();
     res.status(200).json(questions);
   } catch (error) {
-    debug(error);
-    res.status(500).json({
-      message: 'An error ocurred.',
-      error
-    })
+    handleError(error, res);
   }
 });
 
 // GET /api/questions/:id
-app.get('/:id', (req, res) => {
-  const question = req.question;
-  res.status(200).json(question);
+app.get('/:id', async (req, res) => {
+  try {
+    const currentQuestion = await question.findById(req.params.id);
+    res.status(200).json(currentQuestion);
+  } catch (error) {
+    handleError(error, res);
+  }
 });
 
 // POST /api/questions
