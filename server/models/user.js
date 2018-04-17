@@ -1,7 +1,7 @@
 import mongoose, { Schema } from 'mongoose';
 import uniqueValidator from 'mongoose-unique-validator';
 
-const UserSchema = Schema({
+const UserSchema = new Schema({
   firstName: {
     type: String,
     required: true
