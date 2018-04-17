@@ -25,16 +25,6 @@ export class AuthService {
     }
   }
 
-  createUserInstance(user) {
-    return new User(
-      user.email,
-      null, // Password
-      user._id,
-      user.firstName,
-      user.lastName,
-    );
-  }
-
   loginAndSaveUser({token, user}) {
     this.currentUser = this.createUserInstance(user);
     localStorage.setItem('token', token);
@@ -85,6 +75,16 @@ export class AuthService {
   showError(_message) {
     const message = _message || 'There was an error. Please, try again.';
     this.snackBar.open(message, 'X', { duration: 2500 });
+  }
+
+  public createUserInstance = (user: User) => {
+    return new User(
+      user.email,
+      null, // Password
+      user._id,
+      user.firstName,
+      user.lastName,
+    );
   }
 
   public handleError = (error: any) => {

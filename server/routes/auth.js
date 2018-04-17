@@ -1,26 +1,21 @@
 import express from 'express';
 import Debug from 'debug';
 import jwt from 'jsonwebtoken';
-import { secret } from '../config';
-
 import {
-  findUserByEmail,
-  fakeUsers,
-} from '../middlewares';
+  hashSync as hash,
+  compareSync as comparePasswords
+} from 'bcryptjs';
+
+import { secret } from '../config';
+import { User } from '../models';
+import { handleError } from '../utils';
 
 const debug = new Debug('Platzioverflow:auth');
 const app = express();
 
-const comparePasswords = (enteredPassword, userPassword) => {
-  return enteredPassword === userPassword;
-};
-
-const handleLoginError = (res) => {
-  return res.status(401).json({
-    message: 'Login failed.',
-    error: 'Wrong email or password.'
-  });
-};
+// Error messages
+const loginFailedError = 'Wrong email or password.';
+const loginFailedMessage = 'Login failed.';
 
 const generateToken = (user) => {
   const token = jwt.sign({ user }, secret, { expiresIn: 86400 });
@@ -28,20 +23,20 @@ const generateToken = (user) => {
 };
 
 // POST /api/auth/signin
-app.post('/signin', (req, res) => {
+app.post('/signin', async (req, res) => {
   const { email, password } = req.body;
-  const user = findUserByEmail(email);
+  const user = await User.findOne({ email });
 
   if (!user) {
     debug(`User with email: ${email} not found.`);
-    return handleLoginError(res);
+    return handleError(loginFailedError, res, loginFailedMessage, 401);
   }
 
   const match = comparePasswords(password, user.password);
 
   if (!match) {
     debug(`Passwords don't match.`);
-    return handleLoginError(res);
+    return handleError(loginFailedError, res, loginFailedMessage, 401);
   }
 
   // Generate token
@@ -60,20 +55,18 @@ app.post('/signin', (req, res) => {
 });
 
 // POST /api/auth/signup
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
   const { email, password, firstName, lastName } = req.body;
-
-  const user = {
-    _id: new Date().getTime(),
+  const newUser = new User({
     email,
-    password,
+    password: hash(password, 10),
     firstName,
-    lastName,
-  };
+    lastName
+  });
 
-  fakeUsers.push(user);
+  const user = await newUser.save();
 
-  debug(`User created successfully`);
+  debug('User created successfully.');
 
   const token = generateToken(user);
 
