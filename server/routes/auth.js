@@ -41,16 +41,12 @@ app.post('/signin', async (req, res) => {
 
   // Generate token
   const token = generateToken(user);
+  debug(user);
 
   res.status(200).json({
     message: 'Login succeded',
     token,
-    user: {
-      _id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-    }
+    user
   });
 });
 
@@ -73,12 +69,7 @@ app.post('/signup', async (req, res) => {
   res.status(201).json({
     message: 'Signup succeded',
     token,
-    user: {
-      _id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-    }
+    user
   });
 });
 

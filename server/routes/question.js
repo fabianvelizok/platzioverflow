@@ -1,10 +1,13 @@
 import express from 'express';
+import Debug from 'debug';
 
-import { requireMiddleware } from '../middlewares';
+import { requireMiddleware, questionMiddleware } from '../middlewares';
 import { question } from '../db-api';
 import { handleError } from '../utils';
+import { User } from '../models';
 
 const app = express.Router();
+const debug = new Debug('Platzioverflow:routes');
 
 // GET /api/questions
 app.get('/', async (req, res) => {
@@ -17,9 +20,9 @@ app.get('/', async (req, res) => {
 });
 
 // GET /api/questions/:id
-app.get('/:id', async (req, res) => {
+app.get('/:id', questionMiddleware, async (req, res) => {
   try {
-    const currentQuestion = await question.findById(req.params.id);
+    const currentQuestion = req.question;
     res.status(200).json(currentQuestion);
   } catch (error) {
     handleError(error, res);
@@ -46,16 +49,20 @@ app.post('/', requireMiddleware, async (req, res) => {
 });
 
 // POST /api/questions/:id/answers
-app.post('/:id/answers', requireMiddleware, (req, res) => {
-  const question = req.question;
-  const newAnswer = req.body;
+app.post('/:id/answers', requireMiddleware, questionMiddleware, async (req, res) => {
+  const currentQuestion = req.question;
+  const answer = req.body;
 
-  newAnswer.createdAt = new Date();
-  newAnswer.user = req.user;
+  answer.createdAt = new Date();
+  answer.user = new User(req.user);
 
-  question.answers.push(newAnswer);
+  try {
+    const newAnswer = await question.createAnswer(currentQuestion, answer);
+    res.status(201).json(newAnswer);
+  } catch (error) {
+    handleError(error, res);
+  }
 
-  res.status(201).json(newAnswer);
 });
 
 export default app;

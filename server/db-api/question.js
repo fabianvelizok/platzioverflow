@@ -1,4 +1,4 @@
-import { Question } from '../models';
+import { Question, Answer } from '../models';
 import Debug from 'debug';
 
 const debug = new Debug('Platzioverflow:db-api:question');
@@ -25,9 +25,18 @@ export default {
       });
   },
 
-  create: (q) => {
+  create: (_question) => {
     debug('Creating a new question.');
-    const question = new Question(q);
+    const question = new Question(_question);
     return question.save(question);
+  },
+
+  createAnswer: async (_question, _answer) => {
+    debug(`Creating a new answer for question with id: ${_question._id}`);
+    const answer = new Answer(_answer);
+    const savedAnswer = await answer.save();
+    _question.answers.push(savedAnswer);
+    await _question.save();
+    return savedAnswer;
   }
 }
