@@ -5,9 +5,12 @@ const debug = new Debug('Platzioverflow:db-api:question');
 
 export default {
 
-  findAll: () => {
+  findAll: (sort) => {
     debug('Finding all questions.');
-    return Question.find().populate('answers');
+    return Question
+      .find()
+      .sort(sort)
+      .populate('answers');
   },
 
   findById: (_id) => {

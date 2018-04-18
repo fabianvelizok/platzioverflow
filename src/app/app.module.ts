@@ -24,6 +24,7 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { QuestionListComponent } from './question/question-list/question-list.component';
 import { QuestionFormComponent } from './question/question-form/question-form.component';
+import { QuestionScreenComponent } from './question/question-screen/question-screen.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { QuestionFormComponent } from './question/question-form/question-form.co
     SignupComponent,
     QuestionListComponent,
     QuestionFormComponent,
+    QuestionScreenComponent,
   ],
   imports: [
     BrowserModule,

@@ -29,8 +29,8 @@ export class QuestionService {
       .catch(this.handleError);
   }
 
-  getQuestions(): Promise<void | Question[]> {
-    return this.http.get(this.questionUrl)
+  getQuestions(sort): Promise<void | Question[]> {
+    return this.http.get(`${this.questionUrl}?sort=${sort}`)
       .toPromise()
       .then(response => response.json() as Question[])
       .catch(this.handleError);
