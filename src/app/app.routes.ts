@@ -11,5 +11,4 @@ const ROUTES: Routes = [
   { path: 'questions', children: QUESTION_ROUTES },
 ];
 
-const router = RouterModule.forRoot(ROUTES);
-export default router;
+export const Routing = RouterModule.forRoot(ROUTES);

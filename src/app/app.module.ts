@@ -10,7 +10,7 @@ import { MaterialModules } from './material.modules'; // Material modules
 import { MomentModule } from 'angular2-moment';
 
 // Routes
-import Routes from './app.routes';
+import { Routing } from './app.routes';
 
 // Services
 import { QuestionService } from './question/question.service';
@@ -45,7 +45,7 @@ import { QuestionScreenComponent } from './question/question-screen/question-scr
     MomentModule,
     FormsModule,
     ReactiveFormsModule,
-    Routes,
+    Routing,
     HttpModule,
   ],
   providers: [
