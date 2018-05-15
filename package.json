@@ -1,20 +1,24 @@
 {
   "name": "platzioverflow",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "license": "MIT",
+  "engines": {
+    "node": "8.11.1",
+    "yarn": "1.6.0"
+  },
   "scripts": {
     "ng": "ng",
-    "start": "concurrently -r \"npm run start:server\" \"npm run start:client\"",
+    "start": "concurrently -r \"yarn start:server\" \"yarn start:client\"",
     "start:client": "ng serve",
     "start:server": "cross-env NODE_ENV=development DEBUG=Platzioverflow* nodemon ./server/index.js --exec babel-node",
     "start-prod": "cross-env NODE_ENV=production node ./server.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build": "npm run build:client && npm run build:server",
+    "build": "yarn build:client && yarn build:server",
     "build:client": "ng build --prod",
     "build:server": "babel server --out-dir dist/server",
-    "postinstall": "npm run build"
+    "postinstall": "yarn build"
   },
   "private": true,
   "dependencies": {
